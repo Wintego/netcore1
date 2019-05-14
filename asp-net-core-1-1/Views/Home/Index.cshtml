@@ -1,0 +1,32 @@
+﻿@model IEnumerable<asp_net_core_1_1.Models.Employee>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Patronymic</th>
+            <th>Age</th>
+            <th></th>
+        </tr>
+        @foreach (var employee in Model)
+        {
+    <tr>
+        <td>@employee.Id</td>
+        <td>@employee.FirstName</td>
+        <td>@employee.SurName</td>
+        <td>@employee.Patronymic</td>
+        <td>@employee.Age</td>
+        <td>@Html.ActionLink("Details", "Details", new { Id = employee.Id})</td>
+    </tr>
+        }
+    </table>
+</body>
+</html>
