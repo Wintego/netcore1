@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace asp_net_core_1_1.Controllers
 {
-    public class HomeController : Controller
+    public class EmployeesController : Controller
     {
         List<Employee> Employees = new List<Employee>
         {
