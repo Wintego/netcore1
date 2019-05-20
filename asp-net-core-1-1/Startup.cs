@@ -25,16 +25,17 @@ namespace asp_net_core_1_1
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
             app.UseMvc(route =>
             {
                 route.MapRoute(
                     name: "default", 
                     template: "{Controller=Main}/{Action=Index}/{id?}");
             });
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
         }
     }
 }
