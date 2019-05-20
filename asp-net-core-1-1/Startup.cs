@@ -29,7 +29,7 @@ namespace asp_net_core_1_1
             {
                 route.MapRoute(
                     name: "default", 
-                    template: "{Controller=Home}/{Action=Index}/{id?}");
+                    template: "{Controller=Main}/{Action=Index}/{id?}");
             });
             app.Run(async (context) =>
             {
