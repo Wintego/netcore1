@@ -8,9 +8,16 @@ namespace asp_net_core_1.Controllers
 {
     public class MainController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
+        public IActionResult Shop() => View();
+        public IActionResult ProductDetails() => View();
+        public IActionResult Login() => View();
+        public IActionResult ContactUs() => View();
+        public IActionResult Checkout() => View();
+        public IActionResult Cart() => View();
+        public IActionResult BlogSingle() => View();
+        public IActionResult Blog() => View();
+        public IActionResult NotFound() => View();
+
     }
 }
