@@ -2,26 +2,60 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using asp_net_core_1_1.Models;
+using asp_net_core_1.Infrastructure.Interfaces;
+using asp_net_core_1.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace asp_net_core_1_1.Controllers
+namespace asp_net_core_1.Controllers
 {
     public class EmployeesController : Controller
     {
-        List<Employee> Employees = new List<Employee>
+        IEmployeesData Employees;
+        public EmployeesController(IEmployeesData employees)
         {
-            new Employee { Id=0, FirstName="Имя0", SurName="Фамилия0", Patronymic="Отчество0", Age=0 },
-            new Employee { Id=1, FirstName="Имя1", SurName="Фамилия1", Patronymic="Отчество1", Age=1 },
-            new Employee { Id=2, FirstName="Имя2", SurName="Фамилия2", Patronymic="Отчество2", Age=2 }
-        };
+            this.Employees = employees;
+        }
+
         public IActionResult Index()
         {
-            return View(Employees);
+            return View(Employees.GetAll());
         }
         public IActionResult Details(int id)
         {
-            return View(Employees.FirstOrDefault(e => e.Id == id));
+            var employee = Employees.GetById(id);
+            if (employee is null) return NotFound();
+            return View(employee);
+        }
+        public IActionResult Edit(int? id)
+        {
+            if (id is null) return View();
+            return View(Employees.GetById((int)id));
+        }
+        [HttpPost]
+        public IActionResult Edit(Employee employee)
+        {
+            //if (!ModelState.IsValid) return View(employee);
+            if (employee.Id > 0)
+            {
+                var db_employee = Employees.GetById(employee.Id);
+                if (db_employee is null) return NotFound();
+                db_employee.FirstName = employee.FirstName;
+                db_employee.SurName = employee.SurName;
+                db_employee.Patronymic = employee.Patronymic;
+                db_employee.Age = employee.Age;
+            }
+            else Employees.AddNew(employee);
+            Employees.Save();
+
+            return RedirectToAction("Index");
+        }
+        public IActionResult Delete(int id)
+        {
+            var emp = Employees.GetById(id);
+            if (emp is null) return NotFound();
+            Employees.Delete(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,13 +1,6 @@
-﻿@model asp_net_core_1_1.Models.Employee;
-<!DOCTYPE html>
+﻿@model asp_net_core_1.Models.Employee
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    @Html.ActionLink("< На главную", "Index", "Home")
+    @Html.ActionLink("< На главную", "Index", "Employees")
     <table>
         <tr>
             <td>ID</td>
@@ -30,5 +23,3 @@
             <td>@Model.Age</td>
         </tr>
     </table>
-</body>
-</html>
