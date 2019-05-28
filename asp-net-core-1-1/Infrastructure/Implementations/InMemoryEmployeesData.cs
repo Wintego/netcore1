@@ -11,9 +11,9 @@ namespace asp_net_core_1.Infrastructure.Implementations
     {
         List<Employee> Employees = new List<Employee>
         {
-            new Employee { Id=0, FirstName="Имя0", SurName="Фамилия0", Patronymic="Отчество0", Age=0 },
             new Employee { Id=1, FirstName="Имя1", SurName="Фамилия1", Patronymic="Отчество1", Age=1 },
-            new Employee { Id=2, FirstName="Имя2", SurName="Фамилия2", Patronymic="Отчество2", Age=2 }
+            new Employee { Id=2, FirstName="Имя2", SurName="Фамилия2", Patronymic="Отчество2", Age=2 },
+            new Employee { Id=3, FirstName="Имя3", SurName="Фамилия3", Patronymic="Отчество3", Age=3 }
         };
         public void AddNew(Employee employee)
         {

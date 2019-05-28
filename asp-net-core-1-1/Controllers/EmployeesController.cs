@@ -34,7 +34,9 @@ namespace asp_net_core_1.Controllers
         [HttpPost]
         public IActionResult Edit(Employee employee)
         {
-            //if (!ModelState.IsValid) return View(employee);
+            if (employee.Age < 18) ModelState.AddModelError("Age", "Возраст слишком маленький");
+            if (employee.Age > 50) ModelState.AddModelError("Age", "Возраст слишком большой");
+            if (!ModelState.IsValid) return View(employee);
             if (employee.Id > 0)
             {
                 var db_employee = Employees.GetById(employee.Id);
