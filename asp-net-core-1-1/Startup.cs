@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using asp_net_core_1.Infrastructure.Implementations;
-using asp_net_core_1.Infrastructure.Interfaces;
+using WebStore.Infrastructure.Implementations;
+using WebStore.Infrastructure.Interfaces;
+using WebStore.Infrastructure.Implementations;
+using WebStore.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace asp_net_core_1
+namespace WebStore
 {
     public class Startup
     {
@@ -18,6 +20,7 @@ namespace asp_net_core_1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+            services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddMvc();
         }
 

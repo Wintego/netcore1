@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using asp_net_core_1.Infrastructure.Interfaces;
-using asp_net_core_1.Models;
+using WebStore.Infrastructure.Interfaces;
+using WebStore.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace asp_net_core_1.Controllers
+namespace WebStore.Controllers
 {
     public class EmployeesController : Controller
     {
@@ -34,8 +34,6 @@ namespace asp_net_core_1.Controllers
         [HttpPost]
         public IActionResult Edit(Employee employee)
         {
-            if (employee.Age < 18) ModelState.AddModelError("Age", "Возраст слишком маленький");
-            if (employee.Age > 50) ModelState.AddModelError("Age", "Возраст слишком большой");
             if (!ModelState.IsValid) return View(employee);
             if (employee.Id > 0)
             {

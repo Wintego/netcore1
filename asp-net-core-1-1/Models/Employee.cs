@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace asp_net_core_1.Models
+namespace WebStore.Models
 {
     public class Employee
     {

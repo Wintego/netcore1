@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace asp_net_core_1.Controllers
+namespace WebStore.Controllers
 {
     public class MainController : Controller
     {

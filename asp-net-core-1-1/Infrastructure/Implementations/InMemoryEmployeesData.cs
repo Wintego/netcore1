@@ -1,11 +1,11 @@
-﻿using asp_net_core_1.Infrastructure.Interfaces;
-using asp_net_core_1.Models;
+﻿using WebStore.Infrastructure.Interfaces;
+using WebStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace asp_net_core_1.Infrastructure.Implementations
+namespace WebStore.Infrastructure.Implementations
 {
     public class InMemoryEmployeesData : IEmployeesData
     {
