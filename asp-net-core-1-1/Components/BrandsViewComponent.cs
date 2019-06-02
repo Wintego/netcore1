@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebStore.Infrastructure.Map;
 
 namespace WebStore.Components
 {
@@ -24,12 +25,7 @@ namespace WebStore.Components
         private IEnumerable<BrandViewModel> GetBrands()
         {
             var brands = _ProductData.GetBrands();
-            return brands.Select(brand => new BrandViewModel
-            {
-                Id = brand.Id,
-                Name = brand.Name,
-                Order = brand.Order
-            });
+            return brands.Select(brand => brand.CreateViewModel());
         }
     }
 }
