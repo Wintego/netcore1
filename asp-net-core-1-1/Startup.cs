@@ -14,6 +14,8 @@ using WebStore.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using WebStore.Data;
+using WebStore.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebStore
 {
@@ -32,6 +34,30 @@ namespace WebStore
 
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             services.AddScoped<IProductData, SqlProductData>();
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<WebStoreContext>().AddDefaultTokenProviders();
+            services.Configure<IdentityOptions>(cfg => {
+                cfg.Password.RequiredLength = 5;
+                cfg.Password.RequireDigit = false;
+                cfg.Password.RequireLowercase = false;
+                cfg.Password.RequiredUniqueChars = 4;
+                cfg.Password.RequireNonAlphanumeric = false;
+                cfg.Password.RequireUppercase = false;
+                cfg.Lockout.MaxFailedAccessAttempts = 10;                
+                cfg.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                cfg.Lockout.AllowedForNewUsers = true;
+            });
+            services.ConfigureApplicationCookie(cfg =>
+            {
+                cfg.Cookie.HttpOnly = true;
+                cfg.Cookie.Expiration = TimeSpan.FromDays(90);
+                cfg.Cookie.MaxAge = TimeSpan.FromDays(90);
+                cfg.LoginPath = "/Account/Login";
+                cfg.LogoutPath = "/Account/Logout";
+                cfg.AccessDeniedPath = "/Account/AccessDenied";
+                cfg.SlidingExpiration = true;
+            });
+
+
             services.AddMvc();
         }
 
@@ -44,6 +70,8 @@ namespace WebStore
                 app.UseDeveloperExceptionPage();
             }
             app.UseStaticFiles();
+            app.UseDefaultFiles();
+            app.UseAuthentication();
             app.UseMvc(route =>
             {
                 route.MapRoute(
