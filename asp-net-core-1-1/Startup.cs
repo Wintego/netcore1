@@ -34,6 +34,7 @@ namespace WebStore
 
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             services.AddScoped<IProductData, SqlProductData>();
+            services.AddScoped<ICartService, CookieCartService>();
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<WebStoreContext>().AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(cfg => {
                 cfg.Password.RequiredLength = 5;

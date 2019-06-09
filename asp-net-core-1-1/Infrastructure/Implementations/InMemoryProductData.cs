@@ -25,5 +25,9 @@ namespace WebStore.Infrastructure.Implementations
             return products;  
 
         }
+        public Product GetProductById(int id)
+        {
+            return TestData.Products.FirstOrDefault(product => product.Id == id);
+        }
     }
 }

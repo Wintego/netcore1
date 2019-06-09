@@ -23,6 +23,14 @@ namespace WebStore.Infrastructure.Implementations
 
         }
 
+        public Product GetProductById(int id)
+        {
+            return _db.Products
+                .Include(product => product.Brand)
+                .Include(product => product.Section)
+                .FirstOrDefault(product => product.Id == id);
+        }
+
         public IEnumerable<Product> GetProducts(ProductFilter filter)
         {
             IQueryable<Product> products = _db.Products;

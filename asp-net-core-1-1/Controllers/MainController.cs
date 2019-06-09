@@ -9,10 +9,8 @@ namespace WebStore.Controllers
     public class MainController : Controller
     {
         public IActionResult Index() => View();
-        public IActionResult ProductDetails() => View();        
         public IActionResult ContactUs() => View();
         public IActionResult Checkout() => View();
-        public IActionResult Cart() => View();
         public IActionResult BlogSingle() => View();
         public IActionResult Blog() => View();
         public IActionResult NotFound() => View();
