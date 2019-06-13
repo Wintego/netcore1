@@ -35,6 +35,7 @@ namespace WebStore
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<ICartService, CookieCartService>();
+            services.AddScoped<IOrderService, SqlOrderService>();
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<WebStoreContext>().AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(cfg => {
                 cfg.Password.RequiredLength = 5;
@@ -75,6 +76,10 @@ namespace WebStore
             app.UseAuthentication();
             app.UseMvc(route =>
             {
+                route.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 route.MapRoute(
                     name: "default", 
                     template: "{Controller=Main}/{Action=Index}/{id?}");
